@@ -14,6 +14,8 @@ class ViewController: UIViewController {
     @IBOutlet private weak var taxIncludedLabel: UILabel!
     
     private var userDefault = UserDefaults.standard
+
+    private static let taxTextKey = "taxText"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +23,7 @@ class ViewController: UIViewController {
         taxExcludedValueTextField.keyboardType = .numberPad
         taxTextField.keyboardType = .numberPad
         
-        if  let taxText = userDefault.string(forKey: "taxText") {
+        if let taxText = userDefault.string(forKey: Self.taxTextKey) {
             taxTextField.text = taxText
         }
     }
@@ -34,7 +36,6 @@ class ViewController: UIViewController {
     }
     
     @IBAction func edisingChanged(_ sender: Any) {
-        userDefault.set(taxTextField.text, forKey: "taxText")
+        userDefault.set(taxTextField.text, forKey: Self.taxTextKey)
     }
 }
-
